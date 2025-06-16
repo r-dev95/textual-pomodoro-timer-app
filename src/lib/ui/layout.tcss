@@ -1,0 +1,39 @@
+Screen {
+}
+
+Input {
+    width: 17.5%;
+    text-align: center;
+}
+
+Button {
+    width: 10%;
+}
+
+#input_group {
+    align-horizontal: center;
+    margin-top: 1;
+    height: auto;
+}
+
+#button_group {
+    align-horizontal: center;
+    margin-top: 1;
+    height: auto;
+}
+
+#pause {
+    margin-left: 1;
+    margin-right: 1;
+}
+
+#status {
+    margin-top: 1;
+    border: heavy rgb(255, 255, 255);
+    text-align: center;
+}
+
+#session_time {
+    border: heavy rgb(255, 255, 255);
+    text-align: center;
+}
