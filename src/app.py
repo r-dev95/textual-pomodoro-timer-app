@@ -19,8 +19,7 @@ from lib.common.file import load_yaml
 from lib.common.log import SetLogging
 from lib.common.process import sec_to_hms
 from lib.common.types import ParamKey as K
-from lib.common.types import SessionType
-from lib.settings import ParamLog
+from lib.common.types import ParamLog, SessionType
 
 if TYPE_CHECKING:
     from textual.timer import Timer
@@ -29,7 +28,7 @@ PARAM_LOG = ParamLog()
 LOGGER = getLogger(PARAM_LOG.NAME)
 
 
-ICON_PATH = 'lib/ui/icons/icon.ico'
+ICON_PATH = 'lib/components/icons/icon.ico'
 
 
 class MainApp(App):
@@ -38,7 +37,7 @@ class MainApp(App):
     #: str: The title to display in the :class:`Header`.
     TITLE = '🍅 Pomodoro Timer'
     #: str: The `tcss` file path.
-    CSS_PATH = 'lib/ui/layout.tcss'
+    CSS_PATH = 'lib/components/layout.tcss'
     #: list[BindingType]: The key bindings.
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(key='ctrl+c', action='quit', description='Quit', priority=True),
@@ -252,25 +251,43 @@ def set_params() -> dict[str, Any]:
         you don't necessarily need to use command line arguments.
     """
     # set the command line arguments.
-    parser = argparse.ArgumentParser()
-    # log handler (idx=0: stream handler, idx=1: file handler)
-    # (True: set handler, False: not set handler)
-    parser.add_argument('--handler', default=[True, True], type=bool, nargs=2)
-    # log level (idx=0: stream handler, idx=1: file handler)
-    # (DEBUG: 10, INFO: 20, WARNING: 30, ERROR: 40, CRITICAL: 50)
-    choices = [10, 20, 30, 40, 50]
-    parser.add_argument('--level', default=[20, 20], type=int, nargs=2, choices=choices)
-    # file path (parameters)
-    parser.add_argument('--param', default='param/param.yaml', type=str)
-    # directory path (data save)
-    parser.add_argument('--result', default='result', type=str)
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument(
+        f'--{K.HANDLER}',
+        default=[True, True], type=bool, nargs=2,
+        help=(
+            f'The log handler flag to use.\n'
+            f'True: set handler, False: not set handler\n'
+            f'ex) --{K.HANDLER} arg1 arg2 (arg1: stream handler, arg2: file handler)'
+        ),
+    )
+    parser.add_argument(
+        f'--{K.LEVEL}',
+        default=[20, 20], type=int, nargs=2, choices=[10, 20, 30, 40, 50],
+        help=(
+            f'The log level.\n'
+            f'DEBUG: 10, INFO: 20, WARNING: 30, ERROR: 40, CRITICAL: 50\n'
+            f'ex) --{K.LEVEL} arg1 arg2 (arg1: stream handler, arg2: file handler)'
+        ),
+    )
+    parser.add_argument(
+        f'--{K.PARAM}',
+        default='param/param.yaml', type=str,
+        help=('The parameter file path.'),
+    )
+    parser.add_argument(
+        f'--{K.RESULT}',
+        default='result', type=str,
+        help=('The directory path to save the results.'),
+    )
 
     params = vars(parser.parse_args())
 
     # set the file parameters.
-    fpath = Path(params[K.PARAM])
-    if K.PARAM in params and fpath.is_file():
-        params.update(load_yaml(fpath=fpath))
+    if params.get(K.PARAM):
+        fpath = Path(params[K.PARAM])
+        if fpath.is_file():
+            params.update(load_yaml(fpath=fpath))
 
     return params
 
