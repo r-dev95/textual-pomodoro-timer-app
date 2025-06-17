@@ -5,7 +5,7 @@ from logging import Formatter, Logger, StreamHandler
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
-from lib.settings import ParamLog
+from lib.common.types import ParamLog
 
 
 class SetLogging:
