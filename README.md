@@ -1,16 +1,18 @@
-<!--
-    README
- -->
-
- <div align='center'>
+<!-- ============================================================
+  Project Image
+ ============================================================ -->
+<div align=center>
   <img
     src='docs/image/icon.png'
-    alt='Icon image'
+    alt='Project Image.'
     width=300
   />
 </div>
 
-# :tomato:Textual Pomodoro Timer App
+<!-- ============================================================
+  Overview
+ ============================================================ -->
+# :book:Overview
 
 [![English](https://img.shields.io/badge/English-018EF5.svg?labelColor=d3d3d3&logo=readme)](./README.md)
 [![Japanese](https://img.shields.io/badge/Japanese-018EF5.svg?labelColor=d3d3d3&logo=readme)](./README_JA.md)
@@ -31,33 +33,10 @@ We use [Plyer] to notify you when work or break time is over.
 [Textual]: https://github.com/textualize/textual/
 [Plyer]: https://github.com/kivy/plyer
 
-## :rocket:Getting started
-
-### Install from github
-
-```bash
-git clone https://github.com/r-dev95/textual-pomodoro-timer-app.git
-```
-
-### Build virtual environment
-
-It is assumed that `uv` is installed.
-
-If you don't have a Python development environment yet, click [here](https://github.com/r-dev95/env-python).
-
-```bash
-cd textual-pomodoro-timer-app/
-uv sync
-```
-
-### Run
-
-```bash
-cd src
-python app.py
-```
-
-## Screen and Feature
+<!-- ============================================================
+  Features
+ ============================================================ -->
+## :desktop_computer:Features
 
 <img
   src='docs/image/demo.gif'
@@ -117,17 +96,59 @@ python app.py
   </tr>
 </table>
 
-## :keyboard:How to use
+<!-- ============================================================
+  Usage
+ ============================================================ -->
+## :keyboard:Usage
 
-* Set work and break times.
-* Press the start button to start the work status.
+### Install
+
+```bash
+git clone https://github.com/r-dev95/textual-pomodoro-timer-app.git
+```
+
+### Build virtual environment
+
+You need to install `uv`.
+
+If you don't have a python development environment yet, see [here](https://github.com/r-dev95/env-python).
+
+```bash
+cd textual-pomodoro-timer-app/
+uv sync
+```
+
+### Run
+
+```bash
+cd src
+uv run python app.py
+```
+
+- Set work and break times.
+- Press the start button to start the work status.
 
   When the working time is over, the status changes to Break.
 
-* If you want to temporarily stop the timer, press the pause button.
-* If you want to reset the timer, press the reset button.
-* If you want to quit the app, press `Ctrl+q` or `Ctrl+c`.
+- If you want to temporarily stop the timer, press the pause button.
+- If you want to reset the timer, press the reset button.
+- If you want to quit the app, press `Ctrl+q` or `Ctrl+c`.
 
+<!-- ============================================================
+  Structure
+ ============================================================ -->
+## :bookmark_tabs:Structure
+
+<div align=center>
+  <img
+    src='docs/image/classes.png'
+    alt='classes.'
+  />
+</div>
+
+<!-- ============================================================
+  License
+ ============================================================ -->
 ## :key:License
 
 This repository is licensed under the [MIT License](LICENSE).
