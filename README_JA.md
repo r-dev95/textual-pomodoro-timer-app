@@ -1,16 +1,18 @@
-<!--
-    README
- -->
-
- <div align='center'>
+<!-- ============================================================
+  Project Image
+ ============================================================ -->
+<div align=center>
   <img
     src='docs/image/icon.png'
-    alt='Icon image'
+    alt='Project Image.'
     width=300
   />
 </div>
 
-# :tomato:Textual Pomodoro Timer App
+<!-- ============================================================
+  Overview
+ ============================================================ -->
+# :book:Overview
 
 [![English](https://img.shields.io/badge/English-018EF5.svg?labelColor=d3d3d3&logo=readme)](./README.md)
 [![Japanese](https://img.shields.io/badge/Japanese-018EF5.svg?labelColor=d3d3d3&logo=readme)](./README_JA.md)
@@ -32,33 +34,10 @@
 [Textual]: https://github.com/textualize/textual/
 [Plyer]: https://github.com/kivy/plyer
 
-## :rocket:Getting started
-
-### githubからインストール
-
-```bash
-git clone https://github.com/r-dev95/textual-pomodoro-timer-app.git
-```
-
-### 仮想環境の構築
-
-`uv`がインストールされていることが前提です。
-
-pythonの開発環境がまだ整っていない方は、[こちら](https://github.com/r-dev95/env-python)。
-
-```bash
-cd textual-pomodoro-timer-app/
-uv sync
-```
-
-### 実行
-
-```bash
-cd src
-python app.py
-```
-
-## :desktop_computer:画面と機能
+<!-- ============================================================
+  Features
+ ============================================================ -->
+## :desktop_computer:Features
 
 <img
   src='docs/image/demo.gif'
@@ -118,17 +97,59 @@ python app.py
   </tr>
 </table>
 
-## :keyboard:使い方
+<!-- ============================================================
+  Usage
+ ============================================================ -->
+## :keyboard:Usage
 
-* 作業時間と休憩時間を設定します。
-* スタートボタンを押して、作業ステータスを開始します。
+### Install
+
+```bash
+git clone https://github.com/r-dev95/customtkinter-create-theme-app.git
+```
+
+### Build virtual environment
+
+`uv`がインストールされていることが前提です。
+
+pythonの開発環境がまだ整っていない方は、[こちら](https://github.com/r-dev95/env-python)。
+
+```bash
+cd customtkinter-create-theme-app/
+uv sync
+```
+
+### Run
+
+```bash
+cd src
+uv run python app.py
+```
+
+- 作業時間と休憩時間を設定します。
+- スタートボタンを押して、作業ステータスを開始します。
 
   作業時間が終了すると休憩ステータスに移行します。
 
-* タイマーを一時的に停止したい場合、ポーズボタンを押します。
-* タイマーをリセットしたい場合、リセットボタンを押します。
-* アプリを終了する場合、`Ctrl+q`または`Ctrl+c`を押します。
+- タイマーを一時的に停止したい場合、ポーズボタンを押します。
+- タイマーをリセットしたい場合、リセットボタンを押します。
+- アプリを終了する場合、`Ctrl+q`または`Ctrl+c`を押します。
 
-## :key:ライセンス
+<!-- ============================================================
+  Structure
+ ============================================================ -->
+## :bookmark_tabs:Structure
+
+<div align=center>
+  <img
+    src='docs/image/classes.png'
+    alt='classes.'
+  />
+</div>
+
+<!-- ============================================================
+  License
+ ============================================================ -->
+## :key:License
 
 本リポジトリは、[MIT License](LICENSE)に基づいてライセンスされています。

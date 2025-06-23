@@ -1,0 +1,276 @@
+@startuml classes
+!define MAIN_CLASS_COLOR #a8c9ea
+
+set namespaceSeparator none
+class "app.MainApp" as app.MainApp MAIN_CLASS_COLOR {
+  BINDINGS : ClassVar[list[BindingType]]
+  CSS_PATH : str
+  TITLE : str
+  break_time : NoneType, Optional[int]
+  note : Notification
+  pre_session : BREAK, NoneType, Optional[SessionType], PAUSE, WAIT, WORK
+  session : BREAK, NoneType, PAUSE, SessionType, WAIT, WORK
+  session_time : NoneType, Optional[int]
+  status_border : dict
+  status_text : dict
+  timer : NoneType, Optional[Timer]
+  work_time : NoneType, Optional[int]
+  compose() -> ComposeResult
+  pause_timer() -> None
+  plyer_nortify() -> None
+  reset_timer() -> None
+  start_timer() -> None
+  update_session() -> None
+  update_timer() -> None
+  update_ui() -> None
+}
+class "textual.app.App" as textual.app.App {
+  ALLOW_IN_MAXIMIZED_VIEW : ClassVar[str]
+  ALLOW_SELECT : ClassVar[bool]
+  AUTO_FOCUS : ClassVar[str | None]
+  BINDINGS : ClassVar[list[BindingType]]
+  BINDING_GROUP_TITLE : str | None
+  CLICK_CHAIN_TIME_THRESHOLD : ClassVar[float]
+  CLOSE_TIMEOUT : float | None
+  COMMANDS : ClassVar[set[type[Provider] | Callable[[], type[Provider]]]]
+  COMMAND_PALETTE_BINDING : ClassVar[str]
+  COMMAND_PALETTE_DISPLAY : Optional[ClassVar[str | None]]
+  CSS : ClassVar[str]
+  CSS_PATH : Optional[ClassVar[CSSPathType | None]]
+  DEFAULT_CSS : ClassVar[str]
+  DEFAULT_MODE : ClassVar[str]
+  ENABLE_COMMAND_PALETTE : ClassVar[bool]
+  ESCAPE_TO_MINIMIZE : ClassVar[bool]
+  ExpectType : ExpectType
+  HORIZONTAL_BREAKPOINTS : ClassVar[list[tuple[int, str]]] | None
+  INLINE_PADDING : ClassVar[int]
+  MODES : ClassVar[dict[str, str | Callable[[], Screen]]]
+  NOTIFICATION_TIMEOUT : ClassVar[float]
+  SCREENS : ClassVar[dict[str, Callable[[], Screen[Any]]]]
+  SUB_TITLE : str | None
+  SUSPENDED_SCREEN_CLASS : ClassVar[str]
+  TITLE : str | None
+  TOOLTIP_DELAY : float
+  VERTICAL_BREAKPOINTS : ClassVar[list[tuple[int, str]]] | None
+  active_bindings
+  animation_level : Literal
+  animator
+  ansi_color : Reactive
+  ansi_theme
+  ansi_theme_dark : Reactive
+  ansi_theme_light : Reactive
+  app_focus : Reactive
+  app_resume_signal : Signal[App]
+  app_suspend_signal : Signal[App]
+  available_themes
+  children
+  clipboard
+  console : Console
+  css_monitor
+  css_path
+  current_mode
+  current_theme
+  cursor_position : Offset
+  debug
+  default_screen
+  devtools : DevtoolsClient | None
+  driver_class
+  error_console : Console
+  escape_to_minimize
+  features : frozenset[FeatureFlag]
+  focused
+  is_attached
+  is_dom_root
+  is_headless
+  is_inline
+  is_web
+  log
+  mouse_captured : Widget | None
+  mouse_over : NoneType, Widget | None
+  mouse_position : Offset
+  no_color
+  return_code
+  return_value
+  screen
+  screen_stack
+  scroll_sensitivity_x : float
+  scroll_sensitivity_y : float
+  size
+  stylesheet : Stylesheet
+  sub_title : Reactive[str]
+  supports_smooth_scrolling : bool
+  theme : Reactive[str]
+  theme_changed_signal : Signal[Theme]
+  theme_variables : dict[str, str]
+  title : Reactive[str]
+  use_command_palette : bool
+  workers
+  action_add_class(selector: str, class_name: str) -> None
+  action_back() -> None
+  action_bell() -> None
+  action_change_theme() -> None
+  action_command_palette() -> None
+  action_focus(widget_id: str) -> None
+  action_focus_next() -> None
+  action_focus_previous() -> None
+  action_help_quit() -> None
+  action_hide_help_panel() -> None
+  action_notify(message: str, title: str, severity: str) -> None
+  action_pop_screen() -> None
+  action_push_screen(screen: str) -> None
+  action_quit() -> None
+  action_remove_class(selector: str, class_name: str) -> None
+  action_screenshot(filename: str | None, path: str | None) -> None
+  action_show_help_panel() -> None
+  action_simulate_key(key: str) -> None
+  action_suspend_process() -> None
+  action_switch_mode(mode: str) -> None
+  action_switch_screen(screen: str) -> None
+  action_toggle_class(selector: str, class_name: str) -> None
+  action_toggle_dark() -> None
+  add_mode(mode: str, base_screen: str | Callable[[], Screen]) -> None
+  animate(attribute: str, value: float | Animatable) -> None
+  batch_update() -> Generator[None, None, None]
+  begin_capture_print(target: MessageTarget, stdout: bool, stderr: bool) -> None
+  bell() -> None
+  bind(keys: str, action: str) -> None
+  call_from_thread(callback: Callable[..., CallThreadReturnType | Awaitable[CallThreadReturnType]]) -> CallThreadReturnType
+  capture_mouse(widget: Widget | None) -> None
+  clear_notifications() -> None
+  clear_selection() -> None
+  compose() -> ComposeResult
+  copy_to_clipboard(text: str) -> None
+  deliver_binary(path_or_file: str | Path | BinaryIO) -> str | None
+  deliver_screenshot(filename: str | None, path: str | None, time_format: str | None) -> str | None
+  deliver_text(path_or_file: str | Path | TextIO) -> str | None
+  end_capture_print(target: MessageTarget) -> None
+  exit(result: ReturnType | None, return_code: int, message: RenderableType | None) -> None
+  export_screenshot() -> str
+  get_child_by_id(id: str) -> Widget
+  get_child_by_type(expect_type: type[ExpectType]) -> ExpectType
+  get_css_variables() -> dict[str, str]
+  get_default_screen() -> Screen
+  get_driver_class() -> Type[Driver]
+  get_key_display(binding: Binding) -> str
+  get_loading_widget() -> Widget
+  get_screen(screen: ScreenType) -> ScreenType
+  get_system_commands(screen: Screen) -> Iterable[SystemCommand]
+  get_theme(theme_name: str) -> Theme | None
+  get_theme_variable_defaults() -> dict[str, str]
+  get_widget_at(x: int, y: int) -> tuple[Widget, Region]
+  get_widget_by_id(id: str) -> Widget
+  {abstract}handle_bindings_clash(clashed_bindings: set[Binding], node: DOMNode) -> None
+  install_screen(screen: Screen, name: str) -> None
+  is_mounted(widget: Widget) -> bool
+  is_screen_installed(screen: Screen | str) -> bool
+  mount() -> AwaitMount
+  mount_all(widgets: Iterable[Widget]) -> AwaitMount
+  notify(message: str) -> None
+  on_event(event: events.Event) -> None
+  open_url(url: str) -> None
+  panic() -> None
+  pop_screen() -> AwaitComplete
+  {abstract}post_display_hook() -> None
+  push_screen(screen: Screen[ScreenResultType] | str, callback: ScreenResultCallbackType[ScreenResultType] | None, wait_for_dismiss: Literal[False]) -> AwaitMount
+  push_screen_wait(screen: Screen[ScreenResultType]) -> ScreenResultType
+  recompose() -> None
+  refresh() -> Self
+  refresh_css(animate: bool) -> None
+  register_theme(theme: Theme) -> None
+  remove_mode(mode: str) -> AwaitComplete
+  render() -> RenderResult
+  run() -> ReturnType | None
+  run_action(action: str | ActionParseResult, default_namespace: DOMNode | None) -> bool
+  run_async() -> ReturnType | None
+  run_test() -> AsyncGenerator[Pilot[ReturnType], None]
+  save_screenshot(filename: str | None, path: str | None, time_format: str | None) -> str
+  search_commands(commands: Sequence[CommandListItem], placeholder: str) -> AwaitMount
+  search_themes() -> None
+  set_focus(widget: Widget | None, scroll_visible: bool) -> None
+  set_keymap(keymap: Keymap) -> None
+  simulate_key(key: str) -> None
+  stop_animation(attribute: str, complete: bool) -> None
+  suspend() -> Iterator[None]
+  switch_mode(mode: str) -> AwaitMount
+  switch_screen(screen: Screen | str) -> AwaitComplete
+  uninstall_screen(screen: Screen | str) -> str | None
+  unregister_theme(theme_name: str) -> None
+  update_keymap(keymap: Keymap) -> None
+  update_styles(node: DOMNode) -> None
+  validate_sub_title(sub_title: Any) -> str
+  validate_title(title: Any) -> str
+  watch_ansi_theme_dark(theme: TerminalTheme) -> None
+  watch_ansi_theme_light(theme: TerminalTheme) -> None
+}
+class "textual.dom.DOMNode" as textual.dom.DOMNode {
+  BINDINGS : ClassVar[list[BindingType]]
+  BINDING_GROUP_TITLE : str | None
+  COMPONENT_CLASSES : ClassVar[set[str]]
+  DEFAULT_CLASSES : ClassVar[str]
+  DEFAULT_CSS : ClassVar[str]
+  HELP : Optional[ClassVar[str | None]]
+  SCOPED_CSS : ClassVar[bool]
+  WalkType : WalkType
+  ancestors
+  ancestors_with_self
+  auto_refresh
+  background_colors
+  children
+  classes : _ClassesDescriptor
+  colors
+  css_identifier
+  css_identifier_styled
+  css_path_nodes
+  css_tree
+  display
+  displayed_children
+  id
+  is_modal
+  is_on_screen
+  name
+  parent
+  pseudo_classes
+  rich_style
+  screen
+  selection_style
+  styles : RenderStyles
+  text_style
+  tree
+  visible
+  workers
+  action_toggle(attribute_name: str) -> None
+  add_class() -> Self
+  automatic_refresh() -> None
+  check_action(action: str, parameters: tuple[object, ...]) -> bool | None
+  check_consume_key(key: str, character: str | None) -> bool
+  compose_add_child(widget: Widget) -> None
+  data_bind() -> Self
+  get_component_styles() -> RenderStyles
+  get_pseudo_classes() -> set[str]
+  has_class() -> bool
+  has_pseudo_class(class_name: str) -> bool
+  has_pseudo_classes(class_names: set[str]) -> bool
+  mutate_reactive(reactive: Reactive[ReactiveType]) -> None
+  {abstract}notify_style_update() -> None
+  query(selector: str | None) -> DOMQuery[Widget]
+  query_ancestor(selector: str) -> DOMNode
+  query_children(selector: str | None) -> DOMQuery[Widget]
+  query_exactly_one(selector: str) -> Widget
+  query_one(selector: str) -> Widget
+  refresh() -> Self
+  refresh_bindings() -> None
+  remove_class() -> Self
+  reset_styles() -> None
+  run_worker(work: WorkType[ResultType], name: str | None, group: str, description: str, exit_on_error: bool, start: bool, exclusive: bool, thread: bool) -> Worker[ResultType]
+  set_class(add: bool) -> Self
+  set_classes(classes: str | Iterable[str]) -> Self
+  set_reactive(reactive: Reactive[ReactiveType], value: ReactiveType) -> None
+  set_styles(css: str | None) -> Self
+  sort_children() -> None
+  toggle_class() -> Self
+  walk_children(filter_type: type[WalkType]) -> list[WalkType]
+  watch(obj: DOMNode, attribute_name: str, callback: WatchCallbackType, init: bool) -> None
+}
+app.MainApp --|> textual.app.App
+textual.app.App --|> textual.dom.DOMNode
+@enduml
